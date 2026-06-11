@@ -80,7 +80,7 @@
         "max_size_exceeded": "De totale bestandsgrootte overschrijdt het maximum van {{maxSize}} MB"
     },
     "footer": {
-        "tagline": "OTP.Ermers.Online",
+        "tagline": "Ermers — deel geheimen veilig",
         "privacy": "Privacy",
         "terms": "Voorwaarden",
         "api": "API",
@@ -104,7 +104,7 @@
         "invites": "Uitnodigingen",
         "instance": "Server",
         "sign_out": "Uitloggen",
-        "hemmelig": "Hemmelig"
+        "hemmelig": "Ermers"
     },
     "secret_settings": {
         "secret_created_title": "Geheim is aangemaakt",
@@ -322,7 +322,7 @@
     },
     "instance_page": {
         "title": "Serverinstellingen",
-        "description": "Configureer jouw Hemmelig-server",
+        "description": "Configureer jouw Ermers-server",
         "managed_mode": {
             "title": "Beheerde modus",
             "description": "Deze server wordt beheerd via omgevingsvariabelen. Instellingen zijn alleen-lezen."
@@ -534,10 +534,10 @@
         "unexpected_error": "Er is een onverwachte fout opgetreden. Probeer het opnieuw."
     },
     "login_page": {
-        "back_to_hemmelig": "Terug naar Hemmelig",
-        "welcome_back": "Welkom terug bij Hemmelig",
+        "back_to_hemmelig": "Terug naar Ermers",
+        "welcome_back": "Welkom terug bij Ermers",
         "welcome_back_title": "Welkom terug",
-        "welcome_back_description": "Meld je aan met je Hemmelig-account",
+        "welcome_back_description": "Meld je aan met je Ermers-account",
         "username_label": "Gebruikersnaam",
         "username_placeholder": "Voer je gebruikersnaam in",
         "password_label": "Wachtwoord",
@@ -552,11 +552,11 @@
         "unexpected_error": "Er is een onverwachte fout opgetreden. Probeer het opnieuw."
     },
     "register_page": {
-        "back_to_hemmelig": "Terug naar Hemmelig",
-        "join_hemmelig": "Word lid van Hemmelig om veilig geheimen te delen",
+        "back_to_hemmelig": "Terug naar Ermers",
+        "join_hemmelig": "Word lid van Ermers om veilig geheimen te delen",
         "email_password_disabled_message": "Registratie met e-mail en wachtwoord is uitgeschakeld. Gebruik een van de onderstaande login-opties.",
         "create_account_title": "Account aanmaken",
-        "create_account_description": "Word lid van Hemmelig om veilig geheimen te delen",
+        "create_account_description": "Word lid van Ermers om veilig geheimen te delen",
         "username_label": "Gebruikersnaam",
         "username_placeholder": "Kies een gebruikersnaam",
         "email_label": "E-mail",
@@ -736,7 +736,7 @@
         "sign_up_with": "Registreren met {{provider}}"
     },
     "setup_page": {
-        "title": "Welkom bij Hemmelig",
+        "title": "Welkom bij Ermers",
         "description": "Maak je beheerdersaccount aan om te beginnen",
         "name_label": "Volledige naam",
         "name_placeholder": "Voer je volledige naam in",

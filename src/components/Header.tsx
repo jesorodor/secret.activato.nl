@@ -29,7 +29,7 @@ export function Header() {
                         {user ? (
                             <Link
                                 to="/dashboard"
-                                className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1.5 bg-teal-500 hover:bg-teal-600 text-gray-900 dark:text-white transition-all duration-300 hover:scale-105 text-xs sm:text-sm"
+                                className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1.5 bg-teal-500 hover:bg-teal-600 text-white transition-all duration-300 hover:scale-105 text-xs sm:text-sm"
                             >
                                 <CircleUser className="w-4 h-4" />
                                 <span className="hidden xs:inline">{t('header.dashboard')}</span>
@@ -45,7 +45,7 @@ export function Header() {
                                 </Link>
                                 <Link
                                     to="/register"
-                                    className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1.5 bg-teal-500 hover:bg-teal-600 text-gray-900 dark:text-white transition-all duration-300 hover:scale-105 text-xs sm:text-sm"
+                                    className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1.5 bg-teal-500 hover:bg-teal-600 text-white transition-all duration-300 hover:scale-105 text-xs sm:text-sm"
                                 >
                                     <UserPlus className="w-4 h-4" />
                                     <span className="hidden xs:inline">{t('header.sign_up')}</span>
@@ -77,8 +77,8 @@ export function Header() {
                         </h1>
                     ) : (
                         <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 tracking-tight">
-                            One Time
-                            <span className="text-teal-500 dark:text-teal-400">Password</span>
+                            Ermers
+                            <span className="text-teal-500">.online</span>
                         </h1>
                     )}
 
@@ -89,7 +89,7 @@ export function Header() {
                     ) : (
                         <p className="text-sm sm:text-lg text-gray-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed px-4">
                             {t('header.hero_text_part1')}
-                            <span className="text-teal-500 dark:text-teal-400 font-medium">
+                            <span className="text-teal-500 font-medium">
                                 {t('header.hero_text_part2')}
                             </span>
                             {t('header.hero_text_part3')}

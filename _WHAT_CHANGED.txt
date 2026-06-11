@@ -1,23 +1,34 @@
-ERMERS rebrand — drop these files into your repo root (same paths) and commit.
+ERMERS rebrand — full set. Drop into your repo root (same paths), COMMIT + PUSH to the
+v7 branch, then rebuild. The Docker build pulls from your fork's v7 branch, so changes
+that aren't committed will NOT appear in the running app.
 
-CHANGED
-  tailwind.config.js                       accent color -> #516969 (overrides the `teal`
-                                           palette the whole UI uses; ~240 usages reskinned)
-  src/components/Logo.tsx                   ERMERS wordmark (vector, adapts to light/dark)
-  src/components/Header.tsx                 logo sizing fixed for wide wordmark
-  src/components/Footer.tsx                 logo sizing fixed
-  src/pages/SetupPage.tsx                   logo sizing fixed
-  src/components/Layout/DashboardLayout.tsx logo sizing fixed (3 spots)
-  index.html                               <title> + theme-color -> Ermers / #516969
-  public/manifest.json                     PWA name + colors -> Ermers / #516969
-  public/favicon.ico                       ERMERS on #516969
-  public/icons/*.png                       all PWA / home-screen icons regenerated
-  logo.svg, logo.png, logo_color.png       root repo assets (accent-colored wordmark)
+COLORS (#516969)
+  tailwind.config.js                         accent -> #516969 (overrides the `teal`
+                                             palette the whole UI uses: buttons, links,
+                                             focus rings, .online, self-destruct, etc.)
+  src/components/Header.tsx                   .online + self-destruct forced to #516969 in
+                                             BOTH light/dark; teal buttons get white labels
 
-APPLY
-  Code/asset changes need a rebuild:  npx vite build   (or rebuild your Docker image)
+LOGO
+  src/components/Logo.tsx                     ERMERS wordmark (vector, adapts light/dark)
+  Header / Footer / SetupPage / DashboardLayout  logo sizing fixed for the wide wordmark
+  public/icons/*.png, public/favicon.ico     all icons regenerated (wordmark on #516969)
+  logo.svg / logo.png / logo_color.png        root repo assets
 
-NOTE
-  The header still shows a big "Hemmelig.app" text title under your wordmark. If you want
-  that gone (since the wordmark already reads "ERMERS"), hide the <h1> block in
-  src/components/Header.tsx (lines ~78-83), or set an Instance Name in the admin dashboard.
+TEXT / BRANDING
+  src/components/Header.tsx                   title "Hemmelig.app" -> "Ermers.online"
+  src/i18n/locales/en/en.json                "Hemmelig" -> "Ermers" everywhere;
+                                             footer tagline -> "Ermers — share secrets securely"
+  src/i18n/locales/nl/nl.json (Dutch)        "Hemmelig" -> "Ermers";
+                                             footer tagline -> "Ermers — deel geheimen veilig"
+  src/components/Footer.tsx                   Norwegian flag -> Dutch flag
+  index.html, public/manifest.json           titles/meta/theme/name -> Ermers / #516969
+
+NOT changed on purpose
+  X-Hemmelig-Signature  (webhook HTTP header — a technical identifier the code relies on)
+  Footer links still point at the original project (github.com/HemmeligOrg, hemmelig.app,
+  the x.com link) — repoint these to your own if you want; I left them so nothing breaks.
+
+DEPLOY
+  git add -A && git commit -m "Ermers rebrand" && git push origin v7
+  docker compose build --no-cache && docker compose up -d --force-recreate

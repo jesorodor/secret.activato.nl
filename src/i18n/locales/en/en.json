@@ -80,7 +80,7 @@
         "max_size_exceeded": "Total file size exceeds the maximum of {{maxSize}} MB"
     },
     "footer": {
-        "tagline": ""OTP.Ermers.Online",
+        "tagline": "Ermers — share secrets securely",
         "privacy": "Privacy",
         "terms": "Terms",
         "api": "API",
@@ -104,7 +104,7 @@
         "invites": "Invites",
         "instance": "Instance",
         "sign_out": "Sign out",
-        "hemmelig": "Hemmelig"
+        "hemmelig": "Ermers"
     },
     "secret_settings": {
         "secret_created_title": "Secret Created!",
@@ -322,7 +322,7 @@
     },
     "instance_page": {
         "title": "Instance Settings",
-        "description": "Configure your Hemmelig instance",
+        "description": "Configure your Ermers instance",
         "managed_mode": {
             "title": "Managed Mode",
             "description": "This instance is managed via environment variables. Settings are read-only."
@@ -534,10 +534,10 @@
         "unexpected_error": "An unexpected error occurred. Please try again."
     },
     "login_page": {
-        "back_to_hemmelig": "Back to Hemmelig",
-        "welcome_back": "Welcome back to Hemmelig",
+        "back_to_hemmelig": "Back to Ermers",
+        "welcome_back": "Welcome back to Ermers",
         "welcome_back_title": "Welcome back",
-        "welcome_back_description": "Sign in to your Hemmelig account",
+        "welcome_back_description": "Sign in to your Ermers account",
         "username_label": "Username",
         "username_placeholder": "Enter your username",
         "password_label": "Password",
@@ -552,11 +552,11 @@
         "unexpected_error": "An unexpected error occurred. Please try again."
     },
     "register_page": {
-        "back_to_hemmelig": "Back to Hemmelig",
-        "join_hemmelig": "Join Hemmelig to share secrets securely",
+        "back_to_hemmelig": "Back to Ermers",
+        "join_hemmelig": "Join Ermers to share secrets securely",
         "email_password_disabled_message": "Email and password registration is disabled. Please use one of the social login options below.",
         "create_account_title": "Create account",
-        "create_account_description": "Join Hemmelig to share secrets securely",
+        "create_account_description": "Join Ermers to share secrets securely",
         "username_label": "Username",
         "username_placeholder": "Choose a username",
         "email_label": "Email",
@@ -736,7 +736,7 @@
         "sign_up_with": "Sign up with {{provider}}"
     },
     "setup_page": {
-        "title": "Welcome to Hemmelig",
+        "title": "Welcome to Ermers",
         "description": "Create your admin account to get started",
         "name_label": "Full Name",
         "name_placeholder": "Enter your full name",
