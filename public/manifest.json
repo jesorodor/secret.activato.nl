@@ -1,8 +1,8 @@
 {
-    "name": "Hemmelig",
-    "short_name": "Hemmelig",
-    "theme_color": "#deefea",
-    "background_color": "#231e23",
+    "name": "Ermers",
+    "short_name": "Ermers",
+    "theme_color": "#516969",
+    "background_color": "#516969",
     "display": "standalone",
     "orientation": "portrait",
     "scope": "/",

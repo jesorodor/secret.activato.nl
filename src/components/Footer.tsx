@@ -81,7 +81,7 @@ export function Footer() {
                                 className="text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200 transition-colors"
                                 aria-label="Hemmelig"
                             >
-                                <Logo className="w-4 h-4 fill-current" />
+                                <Logo className="h-4 w-auto fill-current" />
                             </a>
                             <LanguagePicker />
                             <ThemeToggle />

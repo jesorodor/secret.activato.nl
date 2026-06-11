@@ -67,7 +67,7 @@ export function SetupPage() {
                 <Card noPadding className="p-8">
                     <div className="text-center mb-8">
                         <div className="inline-flex items-center justify-center mb-4">
-                            <Logo className="w-16 h-16 fill-gray-900 dark:fill-white" />
+                            <Logo className="h-16 w-auto fill-gray-900 dark:fill-white" />
                         </div>
                         <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
                             {t('setup_page.title')}

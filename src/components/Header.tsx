@@ -66,7 +66,7 @@ export function Header() {
                                     className="h-12 sm:h-14 w-auto max-w-48 sm:max-w-64 object-contain"
                                 />
                             ) : (
-                                <Logo className="w-12 h-12 sm:w-14 sm:h-14 fill-gray-900 dark:fill-white" />
+                                <Logo className="h-12 sm:h-14 w-auto fill-gray-900 dark:fill-white" />
                             )}
                         </div>
                     </div>

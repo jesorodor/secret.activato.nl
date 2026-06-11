@@ -1,0 +1,23 @@
+ERMERS rebrand — drop these files into your repo root (same paths) and commit.
+
+CHANGED
+  tailwind.config.js                       accent color -> #516969 (overrides the `teal`
+                                           palette the whole UI uses; ~240 usages reskinned)
+  src/components/Logo.tsx                   ERMERS wordmark (vector, adapts to light/dark)
+  src/components/Header.tsx                 logo sizing fixed for wide wordmark
+  src/components/Footer.tsx                 logo sizing fixed
+  src/pages/SetupPage.tsx                   logo sizing fixed
+  src/components/Layout/DashboardLayout.tsx logo sizing fixed (3 spots)
+  index.html                               <title> + theme-color -> Ermers / #516969
+  public/manifest.json                     PWA name + colors -> Ermers / #516969
+  public/favicon.ico                       ERMERS on #516969
+  public/icons/*.png                       all PWA / home-screen icons regenerated
+  logo.svg, logo.png, logo_color.png       root repo assets (accent-colored wordmark)
+
+APPLY
+  Code/asset changes need a rebuild:  npx vite build   (or rebuild your Docker image)
+
+NOTE
+  The header still shows a big "Hemmelig.app" text title under your wordmark. If you want
+  that gone (since the wordmark already reads "ERMERS"), hide the <h1> block in
+  src/components/Header.tsx (lines ~78-83), or set an Instance Name in the admin dashboard.
