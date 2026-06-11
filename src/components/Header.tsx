@@ -77,8 +77,8 @@ export function Header() {
                         </h1>
                     ) : (
                         <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 tracking-tight">
-                            Hemmelig
-                            <span className="text-teal-500 dark:text-teal-400">.app</span>
+                            One Time
+                            <span className="text-teal-500 dark:text-teal-400">Password</span>
                         </h1>
                     )}
 
