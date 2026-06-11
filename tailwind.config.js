@@ -19,6 +19,7 @@ export default {
                     600: '#e2e8f0',
                     500: '#cbd5e1',
                 },
+                accent: '#516969',
             },
             screens: {
                 xs: '475px',
