@@ -77,8 +77,8 @@ export function Header() {
                         </h1>
                     ) : (
                         <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 tracking-tight">
-                            Secret.
-                            <span className="text-teal-500">Ermers.Online</span>
+                            Secret.Ermers
+                            <span className="text-teal-500">.Online</span>
                         </h1>
                     )}
 
