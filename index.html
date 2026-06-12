@@ -1,51 +1,436 @@
-<!doctype html>
-<html lang="en" class="dark">
-    <head>
-        <meta charset="utf-8" />
-        <title>Ermers - Share Secrets Securely</title>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERMERS ONLINE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
 
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="shortcut icon" href="/favicon.ico" />
+    <!-- Interactive n8n Logo -->
+    <div class="n8n-logo-container" id="n8nLogo">
+        <svg class="n8n-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#ff8fb3;stop-opacity:1" />
+                </linearGradient>
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            
+            <!-- Central Circle -->
+            <circle class="logo-circle logo-center" cx="50" cy="50" r="8" fill="url(#logoGradient)" filter="url(#glow)"/>
+            
+            <!-- Orbital Nodes -->
+            <circle class="logo-circle logo-node logo-node-1" cx="50" cy="20" r="6" fill="url(#logoGradient)" filter="url(#glow)"/>
+            <circle class="logo-circle logo-node logo-node-2" cx="73" cy="35" r="6" fill="url(#logoGradient)" filter="url(#glow)"/>
+            <circle class="logo-circle logo-node logo-node-3" cx="73" cy="65" r="6" fill="url(#logoGradient)" filter="url(#glow)"/>
+            <circle class="logo-circle logo-node logo-node-4" cx="50" cy="80" r="6" fill="url(#logoGradient)" filter="url(#glow)"/>
+            <circle class="logo-circle logo-node logo-node-5" cx="27" cy="65" r="6" fill="url(#logoGradient)" filter="url(#glow)"/>
+            <circle class="logo-circle logo-node logo-node-6" cx="27" cy="35" r="6" fill="url(#logoGradient)" filter="url(#glow)"/>
+            
+            <!-- Connecting Lines -->
+            <line class="logo-line line-1" x1="50" y1="20" x2="50" y2="42" stroke="url(#logoGradient)" stroke-width="2" opacity="0.5"/>
+            <line class="logo-line line-2" x1="73" y1="35" x2="58" y2="50" stroke="url(#logoGradient)" stroke-width="2" opacity="0.5"/>
+            <line class="logo-line line-3" x1="73" y1="65" x2="58" y2="50" stroke="url(#logoGradient)" stroke-width="2" opacity="0.5"/>
+            <line class="logo-line line-4" x1="50" y1="80" x2="50" y2="58" stroke="url(#logoGradient)" stroke-width="2" opacity="0.5"/>
+            <line class="logo-line line-5" x1="27" y1="65" x2="42" y2="50" stroke="url(#logoGradient)" stroke-width="2" opacity="0.5"/>
+            <line class="logo-line line-6" x1="27" y1="35" x2="42" y2="50" stroke="url(#logoGradient)" stroke-width="2" opacity="0.5"/>
+        </svg>
+        <div class="logo-pulse"></div>
+    </div>
 
-        <link rel="manifest" href="/manifest.json" />
-        <!-- Primary Meta Tags -->
-        <meta name="title" content="Ermers - Share Secrets Securely" />
-        <meta
-            name="description"
-            content="Share secrets securely with encrypted messages that automatically self-destruct after being read."
-        />
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-text">ERMERS ONLINE</span>
+            </div>
+            <div class="nav-wrapper">
+                <div class="nav-links">
+                    <div class="nav-item dropdown">
+                        <a class="nav-link">
+                            <span class="nav-icon">📡</span>
+                            <span class="nav-text">Internet</span>
+                            <span class="arrow">▼</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="http://192.168.18.3/select-device.php" class="dropdown-item" target="_blank">
+                                <span class="icon">📡</span>
+                                <div>
+                                    <div class="item-title">AmpliFi</div>
+                                    <div class="item-desc">Router Management</div>
+                                </div>
+                            </a>
+                            <a href="http://192.168.18.1/index.asp" class="dropdown-item" target="_blank">
+                                <span class="icon">🌐</span>
+                                <div>
+                                    <div class="item-title">EG8247Q</div>
+                                    <div class="item-desc">Gateway Config</div>
+                                </div>
+                            </a>
+                            <a href="https://192.168.1.211:8443/manage/default/dashboard" class="dropdown-item" target="_blank">
+                                <span class="icon">🔧</span>
+                                <div>
+                                    <div class="item-title">Unifi Controller</div>
+                                    <div class="item-desc">Network Dashboard</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.hemmelig.app/" />
-        <meta property="og:title" content="Ermers - Share Secrets Securely" />
-        <meta
-            property="og:description"
-            content="Share secrets securely with encrypted messages that automatically self-destruct after being read."
-        />
-        <meta property="og:image" content="/icons/icon-512x512.png" />
+                    <div class="nav-item dropdown">
+                        <a class="nav-link">
+                            <span class="nav-icon">🖥️</span>
+                            <span class="nav-text">BareMetal</span>
+                            <span class="arrow">▼</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="https://192.168.1.212/" class="dropdown-item" target="_blank">
+                                <span class="icon">🖥️</span>
+                                <div>
+                                    <div class="item-title">ILO 4 ML20</div>
+                                    <div class="item-desc">Server Management</div>
+                                </div>
+                            </a>
+                            <a href="https://192.168.1.201:8006" class="dropdown-item" target="_blank">
+                                <span class="icon">⚡</span>
+                                <div>
+                                    <div class="item-title">PROX-ZILLA</div>
+                                    <div class="item-desc">Proxmox Host</div>
+                                </div>
+                            </a>
+                            <a href="https://192.168.1.213:8006" class="dropdown-item" target="_blank">
+                                <span class="icon">🦍</span>
+                                <div>
+                                    <div class="item-title">PROX-KONG</div>
+                                    <div class="item-desc">Proxmox Host</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
 
-        <!-- Twitter -->
-        <meta property="twitter:card" content="/summary_large_image" />
-        <meta property="twitter:url" content="https://www.hemmelig.app/" />
-        <meta property="twitter:title" content="Ermers - Share Secrets Securely" />
-        <meta
-            property="twitter:description"
-            content="Share secrets securely with encrypted messages that automatically self-destruct after being read."
-        />
-        <meta property="twitter:image" content="/icons/icon-512x512.png" />
+                    <div class="nav-item dropdown">
+                        <a class="nav-link">
+                            <span class="nav-icon">⚙️</span>
+                            <span class="nav-text">Interfaces</span>
+                            <span class="arrow">▼</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="https://192.168.1.211:9443/#!/home" class="dropdown-item" target="_blank">
+                                <span class="icon">🐳</span>
+                                <div>
+                                    <div class="item-title">Portainer</div>
+                                    <div class="item-desc">Container Management</div>
+                                </div>
+                            </a>
+                            <a href="http://192.168.1.211:8123" class="dropdown-item" target="_blank">
+                                <span class="icon">🏠</span>
+                                <div>
+                                    <div class="item-title">Home Assistant</div>
+                                    <div class="item-desc">Smart Home Hub</div>
+                                </div>
+                            </a>
+                            <a href="http://192.168.1.211" class="dropdown-item" target="_blank">
+                                <span class="icon">🛡️</span>
+                                <div>
+                                    <div class="item-title">Pi-Hole</div>
+                                    <div class="item-desc">DNS & Ad Blocking</div>
+                                </div>
+                            </a>
+                            <a href="http://192.168.1.214" class="dropdown-item" target="_blank">
+                                <span class="icon">⚙️</span>
+                                <div>
+                                    <div class="item-title">MGMT01</div>
+                                    <div class="item-desc">Management Interface</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
 
-        <meta name="theme-color" content="#516969" />
+                    <div class="nav-item dropdown">
+                        <a class="nav-link">
+                            <span class="nav-icon">🏢</span>
+                            <span class="nav-text">M365</span>
+                            <span class="arrow">▼</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="https://ermerstenant.sharepoint.com/" class="dropdown-item" target="_blank">
+                                <span class="icon">🏢</span>
+                                <div>
+                                    <div class="item-title">Hub</div>
+                                    <div class="item-desc">SharePoint Home</div>
+                                </div>
+                            </a>
+                            <a href="https://ermerstenant.sharepoint.com/sites/Studio/" class="dropdown-item" target="_blank">
+                                <span class="icon">🎨</span>
+                                <div>
+                                    <div class="item-title">Studio</div>
+                                    <div class="item-desc">Creative Workspace</div>
+                                </div>
+                            </a>
+                            <a href="https://ermerstenant.sharepoint.com/sites/Vault" class="dropdown-item" target="_blank">
+                                <span class="icon">🔒</span>
+                                <div>
+                                    <div class="item-title">Vault</div>
+                                    <div class="item-desc">Secure Storage</div>
+                                </div>
+                            </a>
+                            <a href="https://ermerstenant.sharepoint.com/sites/sharebox" class="dropdown-item" target="_blank">
+                                <span class="icon">📦</span>
+                                <div>
+                                    <div class="item-title">Sharebox</div>
+                                    <div class="item-desc">Shared Resources</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <link rel="apple-touch-icon" href="/icons/maskable-icon-192x192.png" />
-    </head>
-    <body>
-        <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root"></div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+            <div class="grid-pattern"></div>
+            <div class="particles" id="particles"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Uw persoonlijke infrastructuur hub
+                </div>
+                <h1 class="hero-title">
+                    Welkom bij<br>
+                    <span class="gradient-text">ERMERS ONLINE</span>
+                </h1>
+                <p class="typewriter" id="typewriter"></p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="24">0</div>
+                        <div class="stat-label">Services</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="99.9">0</div>
+                        <div class="stat-label">Uptime %</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="3">0</div>
+                        <div class="stat-label">Servers</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <script type="module" src="/src/main.tsx"></script>
-    </body>
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Kernfunctionaliteiten</span>
+                <h2 class="section-title">Al uw systemen, één centrale plek</h2>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card" data-category="network">
+                    <div class="card-glow"></div>
+                    <div class="card-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Netwerkbeheer</h3>
+                    <p class="card-description">Beheer uw volledige netwerkinfrastructuur met professionele tools</p>
+                    <div class="card-links">
+                        <a href="http://192.168.18.3/select-device.php" target="_blank">AmpliFi</a>
+                        <a href="http://192.168.18.1/index.asp" target="_blank">EG8247Q</a>
+                        <a href="https://192.168.1.211:8443/manage/default/dashboard" target="_blank">Unifi</a>
+                    </div>
+                </div>
+
+                <div class="service-card" data-category="servers">
+                    <div class="card-glow"></div>
+                    <div class="card-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="8" rx="2"></rect>
+                            <rect x="2" y="14" width="20" height="8" rx="2"></rect>
+                            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Server Infrastructure</h3>
+                    <p class="card-description">Directe toegang tot uw Proxmox hosts en server management interfaces</p>
+                    <div class="card-links">
+                        <a href="https://192.168.1.212/" target="_blank">ILO 4 ML20</a>
+                        <a href="https://192.168.1.201:8006" target="_blank">PROX-ZILLA</a>
+                        <a href="https://192.168.1.213:8006" target="_blank">PROX-KONG</a>
+                    </div>
+                </div>
+
+                <div class="service-card" data-category="apps">
+                    <div class="card-glow"></div>
+                    <div class="card-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="3" width="7" height="7"></rect>
+                            <rect x="14" y="14" width="7" height="7"></rect>
+                            <rect x="3" y="14" width="7" height="7"></rect>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Applicatie Dashboard</h3>
+                    <p class="card-description">Al uw belangrijke applicaties en management tools op één plek</p>
+                    <div class="card-links">
+                        <a href="https://192.168.1.211:9443/#!/home" target="_blank">Portainer</a>
+                        <a href="http://192.168.1.211:8123" target="_blank">Home Assistant</a>
+                        <a href="http://192.168.1.211" target="_blank">Pi-Hole</a>
+                    </div>
+                </div>
+
+                <div class="service-card" data-category="cloud">
+                    <div class="card-glow"></div>
+                    <div class="card-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="card-title">Microsoft 365</h3>
+                    <p class="card-description">Snelle toegang tot al uw SharePoint sites en Office 365 diensten</p>
+                    <div class="card-links">
+                        <a href="https://ermerstenant.sharepoint.com/" target="_blank">Hub</a>
+                        <a href="https://ermerstenant.sharepoint.com/sites/Studio/" target="_blank">Studio</a>
+                        <a href="https://ermerstenant.sharepoint.com/sites/Vault" target="_blank">Vault</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-content">
+                <div class="features-text">
+                    <span class="section-tag">Waarom ERMERS Online?</span>
+                    <h2 class="section-title">Uw persoonlijke command center</h2>
+                    <p class="section-description">Een modern, overzichtelijk platform dat al uw systemen, applicaties en services samenvoegt in één intuïtieve interface. Beheer uw hele infrastructuur vanaf één centraal punt.</p>
+                    
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon-small">⚡</div>
+                            <div>
+                                <h4>Razendsnelle Toegang</h4>
+                                <p>Direct naar uw meest gebruikte systemen met één klik</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon-small">🔒</div>
+                            <div>
+                                <h4>Veilig & Betrouwbaar</h4>
+                                <p>Alle verbindingen beveiligd via uw eigen netwerk</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon-small">📱</div>
+                            <div>
+                                <h4>Overal Beschikbaar</h4>
+                                <p>Responsive ontwerp werkt perfect op alle apparaten</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="features-visual">
+                    <div class="floating-card card-1">
+                        <div class="mini-icon">🌐</div>
+                        <div class="mini-title">Network Status</div>
+                        <div class="status-indicator online"></div>
+                    </div>
+                    <div class="floating-card card-2">
+                        <div class="mini-icon">🖥️</div>
+                        <div class="mini-title">Server Health</div>
+                        <div class="health-bar">
+                            <div class="health-fill"></div>
+                        </div>
+                    </div>
+                    <div class="floating-card card-3">
+                        <div class="mini-icon">📊</div>
+                        <div class="mini-title">Uptime</div>
+                        <div class="uptime-number">99.9%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links Section -->
+    <section class="quick-links">
+        <div class="container">
+            <h3 class="quick-links-title">Meest Bezocht</h3>
+            <div class="quick-links-grid">
+                <a href="https://portal.office.com" class="quick-link" target="_blank">
+                    <div class="quick-link-icon">💼</div>
+                    <span>M365 Portal</span>
+                </a>
+                <a href="https://192.168.1.211:9443/#!/home" class="quick-link" target="_blank">
+                    <div class="quick-link-icon">🐳</div>
+                    <span>Portainer</span>
+                </a>
+                <a href="http://192.168.1.211:8123" class="quick-link" target="_blank">
+                    <div class="quick-link-icon">🏠</div>
+                    <span>Home Assistant</span>
+                </a>
+                <a href="https://192.168.1.201:8006" class="quick-link" target="_blank">
+                    <div class="quick-link-icon">⚡</div>
+                    <span>Proxmox</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>Uw persoonlijke hub voor netwerk, servers en applicaties.</p>
+                    <p class="footer-year">&copy; 2026 Ermers Online. Alle rechten voorbehouden.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>

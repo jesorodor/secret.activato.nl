@@ -221,7 +221,7 @@ export function SecretRequestsPage() {
                                                                 href={`/secret/${request.secretId}`}
                                                                 target="_blank"
                                                                 rel="noopener noreferrer"
-                                                                className="p-1.5 text-teal-500 hover:bg-teal-50 dark:hover:bg-teal-500/10 transition-colors"
+                                                                className="p-1.5 text-teal-500 hover:bg-teal-500/10 transition-colors"
                                                                 title={t(
                                                                     'secret_requests_page.table.view_secret_tooltip'
                                                                 )}
@@ -234,7 +234,7 @@ export function SecretRequestsPage() {
                                                             onClick={() =>
                                                                 fetchCreatorLink(request)
                                                             }
-                                                            className="p-1.5 text-teal-500 hover:bg-teal-50 dark:hover:bg-teal-500/10 transition-colors"
+                                                            className="p-1.5 text-teal-500 hover:bg-teal-500/10 transition-colors"
                                                             title={t(
                                                                 'secret_requests_page.table.copy_link_tooltip'
                                                             )}
