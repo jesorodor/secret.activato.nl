@@ -73,7 +73,7 @@ const buildPlugins = () => {
 };
 
 export const auth = betterAuth({
-    appName: 'Hemmelig',
+    appName: 'Secret.Ermers.Online',
     baseURL: process.env.BETTER_AUTH_URL || 'http://localhost:3000',
     database: prismaAdapter(prisma, {
         provider: 'sqlite',
