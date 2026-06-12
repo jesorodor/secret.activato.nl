@@ -16,6 +16,20 @@
     --color-light-600: #e2e8f0;
     --color-light-500: #cbd5e1;
 
+    /* Brand accent. Overrides Tailwind's default teal palette (which the whole UI
+       uses for buttons, links, focus rings, etc.) with the brand color #516969. */
+    --color-accent: #516969;
+    --color-teal-50: #eef0f0;
+    --color-teal-100: #dce1e1;
+    --color-teal-200: #bdc6c6;
+    --color-teal-300: #9facac;
+    --color-teal-400: #778a8a;
+    --color-teal-500: #516969;
+    --color-teal-600: #425656;
+    --color-teal-700: #354444;
+    --color-teal-800: #283434;
+    --color-teal-900: #1c2525;
+
     --breakpoint-xs: 475px;
 
     --animate-pulse: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
@@ -55,7 +69,7 @@
         height: 20px;
         width: 20px;
         border-radius: 50%;
-        background: #516969;
+        background: #14b8a6;
         cursor: pointer;
         border: 2px solid #e2e8f0;
         transition: all 0.3s ease;
@@ -73,7 +87,7 @@
         height: 20px;
         width: 20px;
         border-radius: 50%;
-        background: #516969;
+        background: #14b8a6;
         cursor: pointer;
         border: 2px solid #e2e8f0;
     }
