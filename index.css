@@ -47,6 +47,27 @@
     .dark body {
         @apply bg-dark-900 text-slate-100;
     }
+
+    /* Soften every corner a little instead of sharp 90 deg edges.
+       Targets the common building blocks (buttons, form fields, cards, panels).
+       Anything with an explicit rounded-* utility (e.g. rounded-full) still wins. */
+    button,
+    input,
+    textarea,
+    select,
+    [class*="bg-teal-"],
+    [class*="bg-dark-6"],
+    [class*="bg-dark-7"],
+    [class*="bg-dark-8"],
+    [class*="bg-gray-1"],
+    [class*="bg-gray-2"],
+    [class*="bg-gray-3"],
+    [class*="bg-white"],
+    [class*="bg-light-"],
+    [class*="border-gray-"],
+    [class*="border-dark-"] {
+        border-radius: 0.5rem;
+    }
 }
 
 @layer components {
