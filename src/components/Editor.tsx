@@ -638,6 +638,9 @@ const MenuBar: FC = () => {
         'p-1.5 bg-gray-200 dark:bg-dark-600/50 hover:bg-gray-300 dark:hover:bg-dark-500/50 text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white transition-all duration-200 hover:scale-105 min-w-[32px] touch-manipulation';
     const activeButtonClass =
         'p-1.5 bg-teal-500 text-white transition-all duration-200 min-w-[32px] touch-manipulation';
+    // Orange variant used only for the paragraph (alinea) button.
+    const activeButtonClassOrange =
+        'p-1.5 bg-accent-secondary text-white transition-all duration-200 min-w-[32px] touch-manipulation';
 
     const groupClass = 'flex items-center gap-0.5';
 
@@ -776,7 +779,7 @@ const MenuBar: FC = () => {
                                     onClick={() => editor.chain().focus().setParagraph().run()}
                                     className={
                                         editor.isActive('paragraph')
-                                            ? activeButtonClass
+                                            ? activeButtonClassOrange
                                             : buttonClass
                                     }
                                 >
