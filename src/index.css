@@ -35,6 +35,8 @@
     /* Secondary brand colour: Activato orange #e96025 (the cloud accent in the
        logo). Exposed as `accent-secondary` -> text-/bg-/border-accent-secondary. */
     --color-accent-secondary: #3a4f9d;
+    --color-accent-secondary-hover: #313f84;
+    --color-accent-secondary-light: #8593cb;
     --color-brand-orange-50: #fdeee7;
     --color-brand-orange-100: #fbd5c3;
     --color-brand-orange-200: #f7b299;
