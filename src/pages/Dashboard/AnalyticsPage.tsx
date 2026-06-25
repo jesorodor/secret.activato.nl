@@ -341,7 +341,7 @@ export function AnalyticsPage() {
                                         data={analytics.dailyStats.map((d) => d.secrets)}
                                         width={80}
                                         height={32}
-                                        color="#516969"
+                                        color="#3a4f9d"
                                         className="text-teal-500"
                                     />
                                 </div>

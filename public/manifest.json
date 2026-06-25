@@ -1,8 +1,8 @@
 {
-    "name": "Ermers",
-    "short_name": "Ermers",
-    "theme_color": "#516969",
-    "background_color": "#516969",
+    "name": "Activato",
+    "short_name": "Activato",
+    "theme_color": "#3a4f9d",
+    "background_color": "#3a4f9d",
     "display": "standalone",
     "orientation": "portrait",
     "scope": "/",

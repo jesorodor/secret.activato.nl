@@ -12,7 +12,7 @@ interface ThemeState {
 export const useThemeStore = create<ThemeState>()(
     persist(
         (set, get) => ({
-            theme: 'dark',
+            theme: 'light',
             setTheme: (theme: Theme) => {
                 set({ theme });
                 if (theme === 'dark') {
@@ -27,7 +27,7 @@ export const useThemeStore = create<ThemeState>()(
             },
         }),
         {
-            name: 'hemmelig-theme',
+            name: 'activato-theme',
             onRehydrateStorage: () => (state) => {
                 if (state?.theme === 'dark') {
                     document.documentElement.classList.add('dark');

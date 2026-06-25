@@ -78,7 +78,7 @@ export function Header() {
                     ) : (
                         <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 tracking-tight">
                             Secret.
-                            <span className="text-teal-500">Ermers.Online</span>
+                            <span className="text-teal-500">Activato.nl</span>
                         </h1>
                     )}
 
@@ -89,7 +89,7 @@ export function Header() {
                     ) : (
                         <p className="text-sm sm:text-lg text-gray-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed px-4">
                             {t('header.hero_text_part1')}
-                            <span className="text-teal-500 font-medium">
+                            <span className="text-accent-secondary font-medium">
                                 {t('header.hero_text_part2')}
                             </span>
                             {t('header.hero_text_part3')}

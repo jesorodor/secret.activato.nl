@@ -21,19 +21,30 @@ export default {
                 },
                 // Brand accent. The UI references the `teal` palette throughout
                 // (buttons, links, focus rings), so we override it with the
-                // brand color #516969 to re-skin the whole app in one place.
-                accent: '#516969',
+                // Activato primary blue #3a4f9d to re-skin the whole app at once.
+                accent: '#3a4f9d',
+                'accent-secondary': '#e96025',
                 teal: {
-                    50: '#eef0f0',
-                    100: '#dce1e1',
-                    200: '#bdc6c6',
-                    300: '#9facac',
-                    400: '#778a8a',
-                    500: '#516969',
-                    600: '#425656',
-                    700: '#354444',
-                    800: '#283434',
-                    900: '#1c2525',
+                    50: '#eef0f8',
+                    100: '#d6dcef',
+                    200: '#b3bce0',
+                    300: '#8593cb',
+                    400: '#5d6fb4',
+                    500: '#3a4f9d',
+                    600: '#313f84',
+                    700: '#29346b',
+                    800: '#212a55',
+                    900: '#1a2143',
+                },
+                'brand-orange': {
+                    50: '#fdeee7',
+                    100: '#fbd5c3',
+                    200: '#f7b299',
+                    300: '#f28e6e',
+                    400: '#ee774a',
+                    500: '#e96025',
+                    600: '#cf501a',
+                    700: '#a93f15',
                 },
             },
             screens: {
