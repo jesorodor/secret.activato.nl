@@ -29,7 +29,7 @@ export function Header() {
                         {user ? (
                             <Link
                                 to="/dashboard"
-                                className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1.5 bg-teal-500 hover:bg-teal-600 text-white transition-all duration-300 hover:scale-105 text-xs sm:text-sm"
+                                className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1.5 bg-accent-secondary hover:bg-accent-secondary-hover text-white transition-all duration-300 hover:scale-105 text-xs sm:text-sm"
                             >
                                 <CircleUser className="w-4 h-4" />
                                 <span className="hidden xs:inline">{t('header.dashboard')}</span>
