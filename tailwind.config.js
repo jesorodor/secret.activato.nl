@@ -21,20 +21,20 @@ export default {
                 },
                 // Brand accent. The UI references the `teal` palette throughout
                 // (buttons, links, focus rings), so we override it with the
-                // Activato primary blue #3a4f9d to re-skin the whole app at once.
-                accent: '#3a4f9d',
-                'accent-secondary': '#e96025',
+                // Activato orange #e96025 — the primary accent for all buttons.
+                accent: '#e96025',
+                'accent-secondary': '#3a4f9d',
                 teal: {
-                    50: '#eef0f8',
-                    100: '#d6dcef',
-                    200: '#b3bce0',
-                    300: '#8593cb',
-                    400: '#5d6fb4',
-                    500: '#3a4f9d',
-                    600: '#313f84',
-                    700: '#29346b',
-                    800: '#212a55',
-                    900: '#1a2143',
+                    50: '#fdeee7',
+                    100: '#fbd5c3',
+                    200: '#f7b299',
+                    300: '#f28e6e',
+                    400: '#ee774a',
+                    500: '#e96025',
+                    600: '#cf501a',
+                    700: '#a93f15',
+                    800: '#832f10',
+                    900: '#5f220b',
                 },
                 'brand-orange': {
                     50: '#fdeee7',

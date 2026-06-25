@@ -18,23 +18,23 @@
 
     /* Brand palette. The whole UI references Tailwind's `teal` palette for
        buttons, links, focus rings, etc. We override it with a real tonal scale
-       built around the Activato primary blue #3a4f9d, so hover/active states
+       built around the Activato orange #e96025 (now the primary accent), so hover/active states
        (teal-600/700) read as intentional shades rather than a flat fill. */
-    --color-accent: #3a4f9d;
-    --color-teal-50: #eef0f8;
-    --color-teal-100: #d6dcef;
-    --color-teal-200: #b3bce0;
-    --color-teal-300: #8593cb;
-    --color-teal-400: #5d6fb4;
-    --color-teal-500: #3a4f9d;
-    --color-teal-600: #313f84;
-    --color-teal-700: #29346b;
-    --color-teal-800: #212a55;
-    --color-teal-900: #1a2143;
+    --color-accent: #e96025;
+    --color-teal-50: #fdeee7;
+    --color-teal-100: #fbd5c3;
+    --color-teal-200: #f7b299;
+    --color-teal-300: #f28e6e;
+    --color-teal-400: #ee774a;
+    --color-teal-500: #e96025;
+    --color-teal-600: #cf501a;
+    --color-teal-700: #a93f15;
+    --color-teal-800: #832f10;
+    --color-teal-900: #5f220b;
 
     /* Secondary brand colour: Activato orange #e96025 (the cloud accent in the
        logo). Exposed as `accent-secondary` -> text-/bg-/border-accent-secondary. */
-    --color-accent-secondary: #e96025;
+    --color-accent-secondary: #3a4f9d;
     --color-brand-orange-50: #fdeee7;
     --color-brand-orange-100: #fbd5c3;
     --color-brand-orange-200: #f7b299;
@@ -83,7 +83,7 @@
         height: 20px;
         width: 20px;
         border-radius: 50%;
-        background: #3a4f9d;
+        background: #e96025;
         cursor: pointer;
         border: 2px solid #e2e8f0;
         transition: all 0.3s ease;
@@ -101,7 +101,7 @@
         height: 20px;
         width: 20px;
         border-radius: 50%;
-        background: #3a4f9d;
+        background: #e96025;
         cursor: pointer;
         border: 2px solid #e2e8f0;
     }
