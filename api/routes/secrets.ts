@@ -250,13 +250,7 @@ const app = new Hono<{
                 return c.json({ error: `Secret exceeds maximum size of ${maxSizeKB} KB` }, 413);
             }
 
-            const { password, fileIds, salt, title, ...rest } = validatedData;
-
-            // Activato policy: expiration is admin-controlled only.
-            // Ignore any client-supplied expiresAt and always use the instance
-            // default (stored in hours). Falls back to 72h (3 days) if unset.
-            const defaultExpirationHours = settings?.defaultSecretExpiration ?? 72;
-            const effectiveExpirationSeconds = defaultExpirationHours * 3600;
+            const { expiresAt, password, fileIds, salt, title, ...rest } = validatedData;
 
             const data: SecretCreateData = {
                 ...rest,
@@ -264,7 +258,7 @@ const app = new Hono<{
                 // Title is required by the database, default to empty Uint8Array if not provided
                 title: title ?? new Uint8Array(0),
                 password: password ? await hash(password) : null,
-                expiresAt: new Date(Date.now() + effectiveExpirationSeconds * 1000),
+                expiresAt: new Date(Date.now() + expiresAt * 1000),
                 ...(fileIds && {
                     files: { connect: fileIds.map((id: string) => ({ id })) },
                 }),

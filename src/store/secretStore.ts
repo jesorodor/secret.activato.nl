@@ -3,7 +3,7 @@ import { useHemmeligStore } from './hemmeligStore';
 import { setApplySettingsCallback, useSecretSettingsStore } from './secretSettingsStore';
 
 /** Default secret expiration: 12 hours in seconds */
-const DEFAULT_EXPIRATION_SECONDS = 259200; // Activato policy: 3 days locked
+const DEFAULT_EXPIRATION_SECONDS = 43200;
 /** Seconds per hour for conversion */
 const SECONDS_PER_HOUR = 3600;
 
@@ -24,10 +24,7 @@ interface SecretState {
     ) => void;
     setSecretData: (
         data: Partial<
-            Pick<
-                SecretState,
-                'secret' | 'title' | 'expiresAt' | 'views' | 'isBurnable' | 'ipRange' | 'password'
-            >
+            Pick<SecretState, 'secret' | 'title' | 'expiresAt' | 'views' | 'isBurnable' | 'ipRange'>
         >
     ) => void;
     resetSecret: () => void;

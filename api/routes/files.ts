@@ -74,8 +74,13 @@ files.get('/:id', zValidator('param', idParamSchema), async (c) => {
 
 files.post('/', authMiddleware, async (c) => {
     try {
-        // Activato policy: file uploads are permanently disabled
-        return c.json({ error: 'File uploads are disabled on this instance.' }, 403);
+        // Check if file uploads are allowed
+        const instanceSettings = await resolveSettings();
+        const allowFileUploads = instanceSettings?.allowFileUploads ?? true;
+
+        if (!allowFileUploads) {
+            return c.json({ error: 'File uploads are disabled on this instance.' }, 403);
+        }
 
         const body = await c.req.parseBody();
         const file = body['file'];

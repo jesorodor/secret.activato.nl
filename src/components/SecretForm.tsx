@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { api } from '../lib/api';
-import { encrypt, generateEncryptionKey, generateSalt } from '../lib/crypto';
+import { encrypt, encryptFile, generateEncryptionKey, generateSalt } from '../lib/crypto';
 import { useSecretStore } from '../store/secretStore';
 import { Card } from './Card';
 import { CreateButton } from './CreateButton';
 import Editor from './Editor';
+import { FileUpload } from './FileUpload';
 import { Modal } from './Modal';
 import { SecuritySettings } from './SecuritySettings';
 import { TitleField } from './TitleField';
@@ -15,12 +16,17 @@ export function SecretForm() {
         secret,
         title,
         password,
+        expiresAt,
+        views,
+        isBurnable,
+        ipRange,
         setSecretIdAndKeys,
         setSecretData,
     } = useSecretStore();
     const { t } = useTranslation();
 
     const [isLoading, setIsLoading] = useState(false);
+    const [files, setFiles] = useState<File[]>([]);
     const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -30,7 +36,41 @@ export function SecretForm() {
         const encryptionKey = generateEncryptionKey(password);
         const salt = generateSalt();
 
-        const fileIds: string[] = [];
+        const fileIds = [];
+        if (files.length > 0) {
+            for (const file of files) {
+                try {
+                    const encryptedFile = await encryptFile(
+                        await file.arrayBuffer(),
+                        encryptionKey,
+                        salt
+                    );
+                    const encryptedFileAsFile = new File([encryptedFile], file.name, {
+                        type: file.type,
+                    });
+
+                    const response = await api.files.$post({
+                        form: {
+                            file: encryptedFileAsFile,
+                        },
+                    });
+                    const data = await response.json();
+                    if (response.ok) {
+                        fileIds.push(data.id);
+                    } else {
+                        throw new Error(data.error || 'File upload failed');
+                    }
+                } catch (error) {
+                    setErrorMessage(
+                        t('secret_form.failed_to_upload_file', { fileName: file.name })
+                    );
+                    setIsErrorModalOpen(true);
+                    setIsLoading(false);
+                    console.error('File upload failed:', error);
+                    return;
+                }
+            }
+        }
 
         const encryptedSecret = await encrypt(secret, encryptionKey, salt);
         const encryptedTitle = await encrypt(title, encryptionKey, salt);
@@ -41,11 +81,10 @@ export function SecretForm() {
             title: encryptedTitle,
             salt,
             password: password ? encryptionKey : '',
-            // Activato policy: locked values
-            expiresAt: 259200, // 3 days
-            views: 1,
-            isBurnable: false,
-            ipRange: null,
+            expiresAt,
+            views,
+            isBurnable,
+            ipRange: ipRange === '' ? null : ipRange,
             fileIds,
         };
 
@@ -93,13 +132,18 @@ export function SecretForm() {
                     />
                 </div>
 
-                {/* Quick create button */}
-                <div className="mt-5 flex justify-end">
-                    <CreateButton
-                        onSubmit={handleSubmit}
-                        isLoading={isLoading}
-                        disabled={!isFormValid}
-                    />
+                {/* File upload and quick create button */}
+                <div className="mt-5 flex flex-col sm:flex-row gap-4 sm:items-start">
+                    <div className="flex-1">
+                        <FileUpload onFileChange={setFiles} compact />
+                    </div>
+                    <div className="sm:flex-shrink-0">
+                        <CreateButton
+                            onSubmit={handleSubmit}
+                            isLoading={isLoading}
+                            disabled={!isFormValid}
+                        />
+                    </div>
                 </div>
             </Card>
 

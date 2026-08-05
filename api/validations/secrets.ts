@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { EXPIRATION_TIMES_SECONDS } from '../lib/constants';
 import {
     idParamSchema,
+    ipRangeSchema,
     paginationQuerySchema,
     processPaginationParams,
     uint8ArraySchema,
@@ -33,37 +34,19 @@ const secretSchema = {
         .optional()
         .nullable(),
     password: z.string().optional(),
-    // Admin-controlled: any standard expiration value is accepted.
-    // The frontend always submits the instance default, so in practice
-    // every secret uses whatever the admin configured.
     expiresAt: z
         .number()
         .refine(
             (val) =>
                 EXPIRATION_TIMES_SECONDS.includes(val as (typeof EXPIRATION_TIMES_SECONDS)[number]),
-            { message: 'Invalid expiration time' }
+            {
+                message: 'Invalid expiration time',
+            }
         ),
-    // Activato policy: max views hard-locked to 1
-    views: z
-        .number()
-        .int()
-        .refine((val) => val === 1, { message: 'Views are locked to 1' })
-        .optional()
-        .default(1),
-    // Activato policy: burn-after-time removed
-    isBurnable: z
-        .boolean()
-        .refine((val) => val === false, { message: 'Burn after time is disabled' })
-        .optional()
-        .default(false),
-    // Activato policy: IP restriction removed
-    ipRange: z.null().optional().default(null),
-    // Activato policy: file uploads removed
-    fileIds: z
-        .array(z.string())
-        .max(0, { message: 'File uploads are disabled' })
-        .optional()
-        .default([]),
+    views: z.number().int().min(1).max(9999).optional(),
+    isBurnable: z.boolean().default(true).optional(),
+    ipRange: ipRangeSchema,
+    fileIds: z.array(z.string()).optional(),
 };
 
 export const createSecretsSchema = z.object(secretSchema);
