@@ -237,6 +237,26 @@ export function InstancePage() {
                                     </div>
                                 </div>
 
+                                <div>
+                                    <label className="block text-xs font-medium text-gray-600 dark:text-slate-300 mb-1">
+                                        {t('instance_page.general_settings.max_secret_size_label')}
+                                    </label>
+                                    <input
+                                        type="number"
+                                        step="0.1"
+                                        min="0.1"
+                                        value={(generalSettings.maxSecretSize / 1024).toFixed(1)}
+                                        onChange={(e) =>
+                                            setGeneralSetting(
+                                                'maxSecretSize',
+                                                Math.round(parseFloat(e.target.value) * 1024)
+                                            )
+                                        }
+                                        disabled={isManaged}
+                                        className="w-full px-3 py-2 text-sm bg-gray-50 dark:bg-dark-700 border border-gray-200 dark:border-dark-600 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-1 focus:ring-teal-500 focus:border-teal-500 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                                    />
+                                </div>
+
                             </div>
 
                             <div>
