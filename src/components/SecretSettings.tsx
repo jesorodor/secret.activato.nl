@@ -136,7 +136,7 @@ export const SecretSettings = () => {
             <div className="mt-6 pt-6 border-t border-gray-200 dark:border-dark-600 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <button
                     onClick={resetSecret}
-                    className="w-full sm:w-auto inline-flex items-center gap-2 justify-center bg-indigo-600 hover:bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                    className="w-full sm:w-auto inline-flex items-center gap-2 justify-center bg-teal-500 hover:bg-teal-600 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
                 >
                     <Plus className="h-4 w-4" />
                     {t('secret_settings.create_new_secret_button')}
