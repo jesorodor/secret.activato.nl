@@ -1,146 +1,22 @@
-import { IconCopy, IconNumber64Small, IconSourceCode } from '@tabler/icons-react';
 import CharacterCount from '@tiptap/extension-character-count';
 import { Color } from '@tiptap/extension-color';
 import Link from '@tiptap/extension-link';
 import ListItem from '@tiptap/extension-list-item';
 import { TextStyle } from '@tiptap/extension-text-style';
-import { EditorProvider, useCurrentEditor } from '@tiptap/react';
+import { EditorProvider } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import { createContext, FC, ReactNode, useState } from 'react';
+import { createContext, FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-// Tooltip props (kept for the read-only copy toolbar)
-interface TooltipProps {
-    text: string;
-    children: ReactNode;
-}
-
-// Context for passing onChange to MenuBar
+// Context for passing onChange to the editor
 const EditorOnChangeContext = createContext<((content: string) => void) | undefined>(undefined);
 
-const Tooltip: FC<TooltipProps> = ({ text, children }) => {
-    const [isVisible, setIsVisible] = useState(false);
-
-    return (
-        <div className="relative inline-block">
-            <div onMouseEnter={() => setIsVisible(true)} onMouseLeave={() => setIsVisible(false)}>
-                {children}
-            </div>
-            {isVisible && (
-                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs font-medium text-gray-900 dark:text-white bg-white dark:bg-dark-800 shadow-sm whitespace-nowrap z-10">
-                    {text}
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-dark-800"></div>
-                </div>
-            )}
-        </div>
-    );
-};
-
-// Template definitions
+// Activato policy: the read-only copy toolbar (copy as text / HTML / base64)
+// is removed when viewing a secret. Renders nothing.
 const ReadOnlyMenuBar: FC = () => {
-    const { editor } = useCurrentEditor();
-    const [copySuccess, setCopySuccess] = useState('');
-    const { t } = useTranslation();
-
-    if (!editor) {
-        return null;
-    }
-
-    const copyAsHTML = () => {
-        const html = editor.getHTML();
-        navigator.clipboard
-            .writeText(html)
-            .then(() => {
-                setCopySuccess(t('editor.copy_success.html'));
-                setTimeout(() => setCopySuccess(''), 2000);
-            })
-            .catch((err) => {
-                console.error('Failed to copy: ', err);
-            });
-    };
-
-    const copyAsPlainText = () => {
-        const text = editor.getText();
-        navigator.clipboard
-            .writeText(text)
-            .then(() => {
-                setCopySuccess(t('editor.copy_success.text'));
-                setTimeout(() => setCopySuccess(''), 2000);
-            })
-            .catch((err) => {
-                console.error('Failed to copy: ', err);
-            });
-    };
-
-    const copyAsBase64 = () => {
-        const text = editor.getText();
-        // Convert to Base64 in a way that is safe for large strings
-        const uint8Array = new TextEncoder().encode(text);
-        let binaryString = '';
-        for (const byte of uint8Array) {
-            binaryString += String.fromCharCode(byte);
-        }
-        const base64Content = btoa(binaryString);
-
-        navigator.clipboard
-            .writeText(base64Content)
-            .then(() => {
-                setCopySuccess(t('editor.copy_success.base64'));
-                setTimeout(() => setCopySuccess(''), 2000);
-            })
-            .catch((err) => {
-                console.error('Failed to copy: ', err);
-            });
-    };
-
-    const buttonClass =
-        'p-2 bg-gray-200 dark:bg-dark-600/50 hover:bg-gray-300 dark:hover:bg-dark-500/50 text-gray-600 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white transition-all duration-200 hover:scale-105';
-    const groupClass = 'flex items-center gap-1';
-
-    return (
-        <div className="mb-4 flex w-full p-3 sm:p-4 bg-gray-50 dark:bg-dark-700/30 border border-gray-200 dark:border-dark-500/30">
-            <div className="flex gap-2">
-                <div className={groupClass}>
-                    <Tooltip text={t('editor.tooltips.copy_text')}>
-                        <button onClick={copyAsPlainText} className={buttonClass}>
-                            <IconCopy
-                                size={20}
-                                stroke={1.5}
-                                className="text-gray-600 dark:text-slate-300"
-                            />
-                        </button>
-                    </Tooltip>
-                    <Tooltip text={t('editor.tooltips.copy_html')}>
-                        <button onClick={copyAsHTML} className={buttonClass}>
-                            <IconSourceCode
-                                size={20}
-                                className="text-gray-600 dark:text-slate-300"
-                            />
-                        </button>
-                    </Tooltip>
-                    <Tooltip text={t('editor.tooltips.copy_base64')}>
-                        <button onClick={copyAsBase64} className={buttonClass}>
-                            <IconNumber64Small
-                                size={20}
-                                stroke={1.5}
-                                className="text-gray-600 dark:text-slate-300"
-                            />
-                        </button>
-                    </Tooltip>
-                </div>
-            </div>
-            {copySuccess && (
-                <div className="text-sm text-gray-700 dark:text-slate-200 animate-fade-in-out p-2">
-                    {copySuccess}
-                </div>
-            )}
-        </div>
-    );
+    return null;
 };
 
-// Activato policy: formatting toolbar removed from the secret editor.
-// The editable menu bar renders nothing; the text box and keyboard
-// shortcuts still work. (Read-only copy toolbar is unaffected.)
 const MenuBar: FC = () => {
     return null;
 };
