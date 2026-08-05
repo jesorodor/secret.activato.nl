@@ -24,7 +24,10 @@ interface SecretState {
     ) => void;
     setSecretData: (
         data: Partial<
-            Pick<SecretState, 'secret' | 'title' | 'expiresAt' | 'views' | 'isBurnable' | 'ipRange'>
+            Pick<
+                SecretState,
+                'secret' | 'title' | 'expiresAt' | 'views' | 'isBurnable' | 'ipRange' | 'password'
+            >
         >
     ) => void;
     resetSecret: () => void;

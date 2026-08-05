@@ -9,12 +9,10 @@ import Editor from './Editor';
 import { FileUpload } from './FileUpload';
 import { Modal } from './Modal';
 import { SecuritySettings } from './SecuritySettings';
-import { TitleField } from './TitleField';
 
 export function SecretForm() {
     const {
         secret,
-        title,
         password,
         expiresAt,
         views,
@@ -73,7 +71,7 @@ export function SecretForm() {
         }
 
         const encryptedSecret = await encrypt(secret, encryptionKey, salt);
-        const encryptedTitle = await encrypt(title, encryptionKey, salt);
+        const encryptedTitle = await encrypt('', encryptionKey, salt);
 
         // Transform empty strings to null for nullable fields
         const dataToSend = {
@@ -124,13 +122,6 @@ export function SecretForm() {
         <div className="space-y-6">
             <Card hover>
                 <Editor value={secret} onChange={(value) => setSecretData({ secret: value })} />
-
-                <div className="mt-5">
-                    <TitleField
-                        value={title}
-                        onChange={(value) => setSecretData({ title: value })}
-                    />
-                </div>
 
                 {/* File upload and quick create button */}
                 <div className="mt-5 flex flex-col sm:flex-row gap-4 sm:items-start">

@@ -1,4 +1,4 @@
-import { Clock, Eye, Flame, Globe, Key, Save } from 'lucide-react';
+import { Clock, Eye, Globe, Key, Save } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHemmeligStore } from '../store/hemmeligStore';
@@ -10,7 +10,7 @@ import { ToggleSwitch } from './ToggleSwitch';
 import { ViewsSlider } from './ViewsSlider';
 
 export function SecuritySettings() {
-    const { expiresAt, views, isBurnable, password, ipRange, setSecretData } = useSecretStore();
+    const { expiresAt, views, password, ipRange, setSecretData } = useSecretStore();
     const { saveSettings, setSaveSettings, updateSettings } = useSecretSettingsStore();
     const { settings: instanceSettings } = useHemmeligStore();
     const { t } = useTranslation();
@@ -19,25 +19,15 @@ export function SecuritySettings() {
     // Sync settings to localStorage when saveSettings is enabled
     useEffect(() => {
         if (saveSettings) {
-            updateSettings({ expiresAt, views, isBurnable });
+            updateSettings({ expiresAt, views, isBurnable: false });
         }
-    }, [expiresAt, views, isBurnable, saveSettings, updateSettings]);
+    }, [expiresAt, views, saveSettings, updateSettings]);
 
     const handleIpRangeToggle = (enabled: boolean) => {
         if (enabled) {
             setSecretData({ ipRange: '' });
         } else {
             setSecretData({ ipRange: null });
-        }
-    };
-
-    const handleBurnAfterTimeToggle = (checked: boolean) => {
-        setSecretData({ isBurnable: checked });
-
-        // When enabling burn after time, set a default expiration if none exists
-        if (checked && !expiresAt) {
-            const defaultExpiration = 14400; // Default to 4 hours in seconds
-            setSecretData({ expiresAt: defaultExpiration });
         }
     };
 
@@ -79,14 +69,12 @@ export function SecuritySettings() {
                             onChange={(value) => setSecretData({ expiresAt: value })}
                         />
                         <p className="text-xs text-gray-500 dark:text-slate-400">
-                            {isBurnable
-                                ? t('security_settings.expiration_burn_after_time_description')
-                                : t('security_settings.expiration_default_description')}
+                            {t('security_settings.expiration_default_description')}
                         </p>
                     </div>
 
-                    {/* Max Views - Only show when burn after time is NOT enabled */}
-                    {!isBurnable && (
+                    {/* Max Views - administrator-controlled, shown disabled */}
+                    {(
                         <div className="space-y-2 p-4 bg-gray-50 dark:bg-dark-700/30 border border-gray-100 dark:border-dark-600/50">
                             <div className="flex items-center space-x-2">
                                 <div className="w-8 h-8 flex items-center justify-center bg-green-500/10 dark:bg-green-500/20 text-green-600 dark:text-green-400">
@@ -103,25 +91,6 @@ export function SecuritySettings() {
                         </div>
                     )}
                 </div>
-
-                {/* Burn After Time Notice - Mobile optimized */}
-                {isBurnable && (
-                    <div className="p-4 bg-orange-500/10 border border-orange-500/30">
-                        <div className="flex items-start space-x-3">
-                            <div className="w-10 h-10 flex items-center justify-center bg-orange-500/20 text-orange-400 flex-shrink-0">
-                                <Flame className="w-5 h-5" />
-                            </div>
-                            <div className="min-w-0 flex-1">
-                                <h3 className="font-semibold text-orange-400 dark:text-orange-300 text-sm sm:text-base">
-                                    {t('security_settings.burn_after_time_mode_title')}
-                                </h3>
-                                <p className="text-xs sm:text-sm text-orange-600/80 dark:text-orange-200/80 mt-1">
-                                    {t('security_settings.burn_after_time_mode_description')}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                )}
 
                 {/* Additional Security Options - Mobile optimized */}
                 <div className="space-y-3">
@@ -216,23 +185,6 @@ export function SecuritySettings() {
                         </div>
                     )}
 
-                    {/* Burn After Time */}
-                    <div className="p-4 bg-gray-50 dark:bg-dark-700/30 border border-gray-100 dark:border-dark-600/50 transition-all duration-200 hover:border-orange-200 dark:hover:border-orange-900/50">
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-3 min-w-0 flex-1">
-                                <div className="w-8 h-8 flex items-center justify-center bg-orange-500/10 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400">
-                                    <Flame className="w-4 h-4" />
-                                </div>
-                                <span className="text-sm font-medium text-gray-700 dark:text-slate-200">
-                                    {t('security_settings.burn_after_time_title')}
-                                </span>
-                            </div>
-                            <ToggleSwitch
-                                checked={isBurnable}
-                                onChange={handleBurnAfterTimeToggle}
-                            />
-                        </div>
-                    </div>
                 </div>
             </div>
         </Card>

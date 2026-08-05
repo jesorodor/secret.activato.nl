@@ -1,0 +1,58 @@
+ACTIVATO SECRET — UI/POLICY CHANGES
+====================================
+
+Upload these files at the SAME paths on branch v7, commit, then rebuild.
+
+WHAT CHANGED
+------------
+1. BURN-AFTER-TIME — removed
+   - UI: the toggle and its notice are gone from the security section.
+   - API: isBurnable is forced to false and any attempt to enable it is rejected.
+
+2. EXPIRATION — administrator-controlled, shown but locked
+   - UI: the expiration dropdown is DISABLED and grayed out. It displays the
+     value, but the user cannot change it.
+   - The value shown/used is the instance "Default secret expiration" you set
+     in the admin panel (in hours; 72 = 3 days default).
+   - API: the server IGNORES any client expiration and always applies the admin
+     default. Change it any time from admin login — no rebuild needed.
+
+3. MAX VIEWS — locked, shown but disabled
+   - UI: the views slider/number is DISABLED and grayed out, showing the value.
+   - API: views is forced to 1 server-side regardless of what the client sends.
+
+4. TITLE FIELD — removed entirely
+   - The whole title input (the # icon field and the "Give your secret a
+     memorable title (optional)" hint) is gone from the create page.
+   - The form still sends an empty encrypted title so the backend is satisfied;
+     no database change needed.
+   - Note: src/components/TitleField.tsx is now unused dead code. It is left in
+     place (harmless). You may delete it if you like.
+
+FILES INCLUDED
+--------------
+  api/validations/secrets.ts      (reject burn)
+  api/routes/secrets.ts           (force admin expiry, views=1, burn off)
+  src/components/SecretForm.tsx    (title field removed)
+  src/components/SecuritySettings.tsx (burn removed; views always shown)
+  src/components/ExpirationSelect.tsx (disabled + grayed)
+  src/components/ViewsSlider.tsx   (disabled + grayed)
+  src/store/secretStore.ts         (minor type fix)
+
+VERIFIED
+--------
+- Frontend production build (vite build) completes successfully.
+- Repo ships with some unrelated pre-existing type warnings; the build does not
+  gate on them (esbuild).
+
+DEPLOY
+------
+  Upload -> commit to v7 -> then on prod:
+  cd /opt/secret-activato
+  docker compose build --no-cache
+  docker compose up -d --force-recreate
+
+CHANGING EXPIRATION LATER
+-------------------------
+  Admin login -> Instance/Settings -> "Default secret expiration" (hours).
+  Takes effect immediately for new secrets; no rebuild required.

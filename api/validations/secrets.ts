@@ -43,8 +43,14 @@ const secretSchema = {
                 message: 'Invalid expiration time',
             }
         ),
+    // Views: admin-controlled; any client value is ignored server-side.
     views: z.number().int().min(1).max(9999).optional(),
-    isBurnable: z.boolean().default(true).optional(),
+    // Activato policy: burn-after-time removed. Reject any attempt to enable it.
+    isBurnable: z
+        .boolean()
+        .refine((val) => val === false, { message: 'Burn after time is disabled' })
+        .optional()
+        .default(false),
     ipRange: ipRangeSchema,
     fileIds: z.array(z.string()).optional(),
 };
