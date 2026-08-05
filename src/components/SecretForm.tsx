@@ -140,8 +140,6 @@ export function SecretForm() {
 
             <SecuritySettings />
 
-            {/* Create button */}
-            <CreateButton onSubmit={handleSubmit} isLoading={isLoading} disabled={!isFormValid} />
             <Modal
                 isOpen={isErrorModalOpen}
                 onClose={() => setIsErrorModalOpen(false)}
