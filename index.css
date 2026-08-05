@@ -118,3 +118,46 @@
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
 }
+
+/* ============================================================
+   Activato: global rounded corners (~16px, "large" / friendly).
+   The base UI was built with square corners (no radius classes),
+   so we round the common surfaces globally here rather than editing
+   every component. Fully-round elements (toggle knob, range thumb)
+   are intentionally excluded / preserved above.
+   ============================================================ */
+@layer components {
+    /* Form controls */
+    input:not([type='range']):not([type='checkbox']):not([type='radio']),
+    textarea,
+    select,
+    button {
+        border-radius: 16px;
+    }
+
+    /* Cards / panels / containers: anchor on having a visible border,
+       which is the app's reliable signal for a rounded surface. This
+       avoids rounding full-bleed page backgrounds that only set a bg color. */
+    div[class*='border-gray-200'],
+    div[class*='border-gray-300'],
+    div[class*='border-dark-600'],
+    div[class*='border-dark-500'] {
+        border-radius: 16px;
+    }
+
+    /* Small inline pills/icon chips look better a touch tighter,
+       but keep them clearly rounded. */
+    .rounded,
+    .rounded-sm,
+    .rounded-md,
+    .rounded-lg {
+        border-radius: 12px;
+    }
+
+    /* Preserve fully-circular elements. */
+    .rounded-full,
+    input[type='checkbox'],
+    input[type='radio'] {
+        border-radius: 9999px;
+    }
+}
