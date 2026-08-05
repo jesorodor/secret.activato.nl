@@ -16,18 +16,8 @@ export function ExpirationSelect({ value, onChange }: ExpirationSelectProps) {
         ? instanceSettings.defaultSecretExpiration * 3600
         : undefined;
 
-    const baseOptions = [
-        { value: 2419200, label: t('expiration.28_days') },
-        { value: 1209600, label: t('expiration.14_days') },
-        { value: 604800, label: t('expiration.7_days') },
-        { value: 259200, label: t('expiration.3_days') },
-        { value: 86400, label: t('expiration.1_day') },
-        { value: 43200, label: t('expiration.12_hours') },
-        { value: 14400, label: t('expiration.4_hours') },
-        { value: 3600, label: t('expiration.1_hour') },
-        { value: 1800, label: t('expiration.30_minutes') },
-        { value: 300, label: t('expiration.5_minutes') },
-    ];
+    // Activato policy: expiration locked to 3 days
+    const baseOptions = [{ value: 259200, label: t('expiration.3_days') }];
 
     const options =
         defaultExpirationInSeconds &&
@@ -48,7 +38,8 @@ export function ExpirationSelect({ value, onChange }: ExpirationSelectProps) {
             <select
                 value={value !== undefined ? value : defaultExpirationInSeconds}
                 onChange={(e) => onChange(parseInt(e.target.value))}
-                className="w-full appearance-none bg-gray-100 dark:bg-dark-700/50 border border-gray-300 dark:border-dark-500/50 px-3 py-2 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500/50 transition-all duration-300 cursor-pointer hover:border-gray-300 dark:border-dark-500/50"
+                disabled
+                className="w-full appearance-none opacity-70 cursor-not-allowed bg-gray-100 dark:bg-dark-700/50 border border-gray-300 dark:border-dark-500/50 px-3 py-2 text-gray-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500/50 transition-all duration-300 cursor-pointer hover:border-gray-300 dark:border-dark-500/50"
             >
                 {options.map((option) => (
                     <option
